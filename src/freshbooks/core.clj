@@ -1,4 +1,5 @@
 (ns freshbooks.core
+  (:use [freshbooks.util :only (timestamp)])
   (:use ring.middleware.reload)
   (:use [compojure.core :only (defroutes GET OPTIONS)]
         [ring.adapter.jetty :as ring]
@@ -13,7 +14,8 @@
                       :headers {"Access-Control-Allow-Origin" "*"
                                 "Content-Type" "text/html"                               
                                 }
-                      :body "<h2>Hello World - Compojure (clojure+ring)</h2>"
+                      :body (str "<h2>Hello World - Compojure (clojure+ring)</h2>"
+                                 "<h4>" (timestamp) "</h4>")
                      }
   )
   (OPTIONS "/welcome" [] {:status 200
