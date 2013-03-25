@@ -1,7 +1,7 @@
 (ns freshbooks.core
   (:use [freshbooks.util :only (timestamp)])
   (:use ring.middleware.reload)
-  (:use [compojure.core :only (defroutes GET OPTIONS)]
+  (:use [compojure.core :only (defroutes GET OPTIONS POST)]
         [ring.adapter.jetty :as ring]
         [freshbooks.middleware :only (wrap-request-logging)]
   )
@@ -26,6 +26,16 @@
                           :body nil
                          }
   )
+  (POST    "/welcome" [] {:status 200
+                          :headers {"Access-Control-Allow-Origin" "*"                                    
+                                    "Content-Type" "text/html"
+                                   }
+                          :body (str "<h2>" 
+                                     "RECEIVED POST /welcome => " (timestamp)
+                                     "</h2>"
+                                )
+                         }
+   )
 )
 
 (def app 
