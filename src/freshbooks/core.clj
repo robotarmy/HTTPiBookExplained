@@ -7,15 +7,15 @@
   )
 )
 
-  
-
 (defroutes handler
   (GET "/welcome" [] {:status 200
                       :headers {"Access-Control-Allow-Origin" "*"
                                 "Content-Type" "text/html"                               
                                 }
-                      :body (str "<h2>Hello World - Compojure (clojure+ring)</h2>"
-                                 "<h4>" (timestamp) "</h4>")
+                      :body (str "<h2>RECEIVED GET /welcome => " 
+                                 (timestamp) 
+                                 "</h2>")
+                                 
                      }
   )
   (OPTIONS "/welcome" [] {:status 200
